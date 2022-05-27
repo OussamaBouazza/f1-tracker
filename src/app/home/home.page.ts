@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ApiService} from "../services/api.service";
+
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  availableSeasons:number[];    //tableau contenant les saisons disponibles
+  ranking:Response[];           //tableau contenant le classement de la saison choisie
 
-  constructor() {}
+
+  constructor(private api: ApiService) {}
+
+
+
+
 
 }
