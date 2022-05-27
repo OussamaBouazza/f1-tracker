@@ -8,12 +8,16 @@ const routes: Routes = [
   // },
   {
     path: '',
-    redirectTo: 'classement',
+    redirectTo: 'calendrier',
     pathMatch: 'full'
   },
   {
     path: 'classement',
     loadChildren: () => import('./classement/classement.module').then( m => m.ClassementPageModule)
+  },
+  {
+    path: 'calendrier',
+    loadChildren: () => import('./calendrier/calendrier.module').then( m => m.CalendrierPageModule)
   },
 ];
 

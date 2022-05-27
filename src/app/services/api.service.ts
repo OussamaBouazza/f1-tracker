@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {ConstructorStanding, DriverStanding, Standing} from "../data/Standing";
+import {Race, RaceCalendar} from "../data/Race";
 
 
 @Injectable({
@@ -27,7 +28,7 @@ export class ApiService {
   }
 
 
-  getConstructorStanding(season: number): Promise<ConstructorStanding []>{
+  async getConstructorStanding(season: number): Promise<ConstructorStanding []>{
     const url = environment.apiUrl + `${season}/constructorStandings.json`;
 
     return new Promise(resolve =>{
@@ -41,6 +42,16 @@ export class ApiService {
   }
 
 
+  //retourne une liste des course de la saison donnée en argument
+  async getCalendar(season: number): Promise<Race[]> {
+    const url = environment.apiUrl + `${season}.json`;
 
+    return new Promise(resolve => {
+      this.http.get(url).subscribe(data => {
+        let jsonData: RaceCalendar = data as RaceCalendar;
+        resolve(jsonData.MRData.RaceTable.Races);
+      })
+    });
+  }
 
 }
