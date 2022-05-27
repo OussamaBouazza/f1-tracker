@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../services/api.service";
-import {DriverStanding} from "../data/Ranking/driver-standing-search";
+import {ConstructorStanding, DriverStanding} from "../data/Standing";
 import {IonSlides} from "@ionic/angular";
 
 @Component({
@@ -9,9 +9,11 @@ import {IonSlides} from "@ionic/angular";
   styleUrls: ['./classement.page.scss'],
 })
 export class ClassementPage implements OnInit {
-  driverStanding: DriverStanding [];           //tableau contenant le classement de la saison choisie
-  segment = 0;
-  selectedSlide: IonSlides;
+  driverStanding: DriverStanding [];            //tableau contenant le classement pilote de la saison choisie
+  constructorStanding: ConstructorStanding [];  //tableau contenant le classement constructeur de la saison choisie
+
+  segment = 0;    //numero de l'onglet (Pilato/Constructeur) sélectionné
+  selectedSlide: IonSlides;   //page (Pilato/Constructeur) affichée
 
   sliderOptions = {
     initialSlide: 0,
@@ -22,11 +24,12 @@ export class ClassementPage implements OnInit {
   constructor(private api: ApiService) {}
 
   async ngOnInit(){
-    this.driverStanding = await this.api.getDriverStanding(2022); //récupérer le classement de la dernière saison
+    this.driverStanding = await this.api.getDriverStanding(2022);             //récupérer le classement pilote de la dernière saison
+    this.constructorStanding = await this.api.getConstructorStanding(2022);   //récupérer le classement constructeur de la dernière saison
   }
 
   //change le slide affiché quand on clique sur une catégorie
-  async segmentChanged(ev){
+  async segmentChanged(){
     await this.selectedSlide.slideTo(this.segment);
   }
 
