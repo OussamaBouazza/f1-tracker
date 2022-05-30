@@ -6,11 +6,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let race of raceList">
+    <ion-item *ngFor="let race of raceList" (click)="onClickRace(race)">
       {{race.raceName}} <br>
-      {{race.date}} {{race.time}}
-
+      {{race.dateTime.toLocaleDateString()}}
+      {{race.dateTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}}
     </ion-item>
-
   </ion-list>
 </ion-content>

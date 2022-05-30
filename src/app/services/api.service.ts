@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {ConstructorStanding, DriverStanding, Standing} from "../data/Standing";
-import {Race, RaceCalendar} from "../data/Race";
+import {Race, RaceData, Result} from "../data/Race";
 
 
 @Injectable({
@@ -48,16 +48,42 @@ export class ApiService {
 
     return new Promise(resolve => {
       this.http.get(url).subscribe(data => {
-        let jsonData: RaceCalendar = data as RaceCalendar;
+        let jsonData: RaceData = data as RaceData;
 
-        //créer un objet Date pour formatter par la suite la date et l'heure
+        //créer un objet Date pour formatter par la suite la date et l'heure de chaque session
         jsonData.MRData.RaceTable.Races.forEach(race => {
           race.dateTime = new Date(`${race.date}T${race.time}`);
-        })
+          race.FirstPractice.dateTime = new Date(`${race.FirstPractice.date}T${race.FirstPractice.time}`);
+          race.SecondPractice.dateTime = new Date(`${race.SecondPractice.date}T${race.SecondPractice.time}`);
+          race.Qualifying.dateTime = new Date(`${race.Qualifying.date}T${race.Qualifying.time}`);
+
+          //vérifie si le GP contient des course sprint et des séances d'essai 3 (ThirdPractice)
+          //Certain GP peuvent ne pas en avoir
+          if (race.ThirdPractice != null)
+            race.ThirdPractice.dateTime = new Date(`${race.ThirdPractice.date}T${race.ThirdPractice.time}`);
+
+          if (race.Sprint != null)
+            race.Sprint.dateTime = new Date(`${race.Sprint.date}T${race.Sprint.time}`);
+
+        });
 
         resolve(jsonData.MRData.RaceTable.Races);
       })
     });
   }
 
+
+  async getRaceResult(season: string, round: string): Promise<Result []>{
+    const url = environment.apiUrl + `${season}/${round}/results.json`;
+
+    return new Promise(resolve =>{
+      this.http.get(url).subscribe(data => {
+        let jsonData:RaceData = data as RaceData;
+
+        resolve(jsonData.MRData.RaceTable.Races[0].Results);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
 }

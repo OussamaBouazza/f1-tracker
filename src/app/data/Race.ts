@@ -1,3 +1,6 @@
+import {Driver} from "./Driver";
+import {Constructor} from "./Constructor";
+
 export class Race {
   season: string;
   round: string;
@@ -12,6 +15,8 @@ export class Race {
   ThirdPractice: ThirdPractice;
   Qualifying: Qualifying;
   Sprint: Sprint;
+
+  Results: Result[];
 }
 
 export class Location {
@@ -31,27 +36,58 @@ export class Circuit {
 export class FirstPractice {
   date: string;
   time: string;
+  dateTime: Date;
 }
 
 export class SecondPractice {
   date: string;
   time: string;
+  dateTime: Date;
 }
 
 export class ThirdPractice {
   date: string;
   time: string;
+  dateTime: Date;
 }
 
 export class Qualifying {
   date: string;
   time: string;
+  dateTime: Date;
 }
 
 export class Sprint {
   date: string;
   time: string;
+  dateTime: Date;
 }
+
+export class QualifyingResult {
+  number: string;
+  position: string;
+  Driver: Driver;
+  Constructor: Constructor;
+  Q1: string;
+  Q2: string;
+  Q3: string;
+}
+
+export class Result {
+  number: string;
+  position: string;
+  positionText: string;
+  points: string;
+  Driver: Driver;
+  Constructor: Constructor;
+  grid: string;
+  laps: string;
+  status: string;
+  // Time: Time;
+  // FastestLap: FastestLap;
+}
+
+
 
 export class RaceTable {
   season: string;
@@ -68,7 +104,7 @@ export class MRData {
   RaceTable: RaceTable;
 }
 
-export class RaceCalendar {
+export class RaceData {
   MRData: MRData;
 }
 
