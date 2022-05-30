@@ -5,6 +5,7 @@ export class Race {
   raceName: string;
   Circuit: Circuit;
   date: string;
+  dateTime: Date; //objet Date pour formatter la date et l'heure renvoyé par l'api
   time: string;
   FirstPractice: FirstPractice;
   SecondPractice: SecondPractice;

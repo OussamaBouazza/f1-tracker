@@ -14,6 +14,7 @@ export class CalendrierPage implements OnInit {
 
   async ngOnInit() {
     this.raceList = await this.api.getCalendar(2022);
+    console.log(this.raceList);
   }
 
 }

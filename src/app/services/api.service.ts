@@ -49,6 +49,12 @@ export class ApiService {
     return new Promise(resolve => {
       this.http.get(url).subscribe(data => {
         let jsonData: RaceCalendar = data as RaceCalendar;
+
+        //créer un objet Date pour formatter par la suite la date et l'heure
+        jsonData.MRData.RaceTable.Races.forEach(race => {
+          race.dateTime = new Date(`${race.date}T${race.time}`);
+        })
+
         resolve(jsonData.MRData.RaceTable.Races);
       })
     });
