@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {ConstructorStanding, DriverStanding, Standing} from "../data/Standing";
-import {Race, RaceData, Result} from "../data/Race";
+import {Qualifying, QualifyingResult, Race, RaceData, Result} from "../data/Race";
 
 
 @Injectable({
@@ -72,8 +72,8 @@ export class ApiService {
     });
   }
 
-
-  async getRaceResult(season: string, round: string): Promise<Result []>{
+  //récupère les résultats d'un GP spécifique
+  async getRaceResults(season: string, round: string): Promise<Result []>{
     const url = environment.apiUrl + `${season}/${round}/results.json`;
 
     return new Promise(resolve =>{
@@ -81,6 +81,20 @@ export class ApiService {
         let jsonData:RaceData = data as RaceData;
 
         resolve(jsonData.MRData.RaceTable.Races[0].Results);
+      }, err => {
+        console.log(err);
+      });
+    });
+  }
+
+  async getQualifyingResults(season: string, round: string): Promise<QualifyingResult []>{
+    const url = environment.apiUrl + `${season}/${round}/qualifying.json`;
+
+    return new Promise(resolve =>{
+      this.http.get(url).subscribe(data => {
+        let jsonData:RaceData = data as RaceData;
+
+        resolve(jsonData.MRData.RaceTable.Races[0].QualifyingResults);
       }, err => {
         console.log(err);
       });

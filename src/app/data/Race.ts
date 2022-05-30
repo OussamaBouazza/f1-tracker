@@ -16,6 +16,7 @@ export class Race {
   Qualifying: Qualifying;
   Sprint: Sprint;
 
+  QualifyingResults: QualifyingResult[];
   Results: Result[];
 }
 

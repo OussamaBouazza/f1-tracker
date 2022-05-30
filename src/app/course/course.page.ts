@@ -25,9 +25,11 @@ export class CoursePage implements OnInit {
     //désérialiser les donnée JSON reçue
     this.race = JSON.parse(jsonData);
 
-    this.race.Results = await this.api.getRaceResult(this.race.season, this.race.round);
+    //requête pour récupérer les résultats de la course
+    this.race.Results = await this.api.getRaceResults(this.race.season, this.race.round);
 
-    console.log(this.race);
+    //requête pour récupérer les résultats des qualifications d'une course
+    this.race.QualifyingResults = await this.api.getQualifyingResults(this.race.season, this.race.round);
   }
 
 }
