@@ -10,7 +10,7 @@ import {ApiService} from "../services/api.service";
 })
 export class CoursePage implements OnInit {
   race: Race;
-  isResumed: boolean;
+  isResumed: boolean;   //permet d'afficher le classement de la course ou l'horaire si elle ne s'est pas encore déroulée
 
 
   constructor(public route:ActivatedRoute, public api: ApiService) { }
@@ -31,12 +31,15 @@ export class CoursePage implements OnInit {
     //requête pour récupérer les résultats de la course
     this.race.Results = await this.api.getRaceResults(this.race.season, this.race.round);
 
+    //check si les données son disponible dans l'api
     if (this.race.Results == null)
       this.isResumed = false;
     else {
       this.isResumed = true;
+
       //requête pour récupérer les résultats des qualifications d'une course
       this.race.QualifyingResults = await this.api.getQualifyingResults(this.race.season, this.race.round);
+      console.log(this.race.QualifyingResults)
     }
 
   }
