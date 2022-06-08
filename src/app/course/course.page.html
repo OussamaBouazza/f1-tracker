@@ -1,12 +1,3 @@
-<!--<ion-header>-->
-
-<!--  <ion-toolbar>-->
-<!--    <ion-button slot="start">-->
-<!--      <ion-back-button></ion-back-button>-->
-<!--    </ion-button>-->
-<!--    <ion-title>{{race.raceName}}</ion-title>-->
-<!--  </ion-toolbar>-->
-<!--</ion-header>-->
 <ion-header translucent>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -16,9 +7,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item lines="none">
+<ion-content >
+
+
+
+  <ion-list *ngIf="isResumed; else blockDate">
+    <ion-item lines="none" >
       <ion-grid >
         <!--        entete du tableau-->
         <ion-row>
@@ -52,4 +46,15 @@
       </ion-grid>
     </ion-item>
   </ion-list>
+
+
+  <ng-template #blockDate>
+    <div class="horaire">
+      Date prévue : {{race.dateTime.toLocaleDateString()}}
+    </div>
+
+    <div class="horaire">
+      Heure de départ du GP : {{race.dateTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}}
+    </div>
+  </ng-template>
 </ion-content>

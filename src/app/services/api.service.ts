@@ -80,7 +80,10 @@ export class ApiService {
       this.http.get(url).subscribe(data => {
         let jsonData:RaceData = data as RaceData;
 
-        resolve(jsonData.MRData.RaceTable.Races[0].Results);
+        if (jsonData.MRData.RaceTable.Races.length > 0)
+          resolve(jsonData.MRData.RaceTable.Races[0].Results);
+        else
+          resolve(null);
       }, err => {
         console.log(err);
       });

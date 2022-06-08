@@ -10,6 +10,7 @@ import {ApiService} from "../services/api.service";
 })
 export class CoursePage implements OnInit {
   race: Race;
+  isResumed: boolean;
 
 
   constructor(public route:ActivatedRoute, public api: ApiService) { }
@@ -25,11 +26,19 @@ export class CoursePage implements OnInit {
     //désérialiser les donnée JSON reçue
     this.race = JSON.parse(jsonData);
 
+    this.race.dateTime = new Date(this.race.dateTime);
+
     //requête pour récupérer les résultats de la course
     this.race.Results = await this.api.getRaceResults(this.race.season, this.race.round);
 
-    //requête pour récupérer les résultats des qualifications d'une course
-    this.race.QualifyingResults = await this.api.getQualifyingResults(this.race.season, this.race.round);
+    if (this.race.Results == null)
+      this.isResumed = false;
+    else {
+      this.isResumed = true;
+      //requête pour récupérer les résultats des qualifications d'une course
+      this.race.QualifyingResults = await this.api.getQualifyingResults(this.race.season, this.race.round);
+    }
+
   }
 
 }
