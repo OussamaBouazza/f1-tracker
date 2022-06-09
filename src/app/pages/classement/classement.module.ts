@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ClassementPageRoutingModule } from './classement-routing.module';
 
 import { ClassementPage } from './classement.page';
+import {NavbarModule} from "../../navbar/navbar.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ClassementPageRoutingModule
+    ClassementPageRoutingModule,
+    NavbarModule
   ],
   declarations: [ClassementPage]
 })

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CalendrierPageRoutingModule } from './calendrier-routing.module';
 
 import { CalendrierPage } from './calendrier.page';
+import {NavbarModule} from "../../navbar/navbar.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CalendrierPageRoutingModule
+    CalendrierPageRoutingModule,
+    NavbarModule
   ],
   declarations: [CalendrierPage]
 })

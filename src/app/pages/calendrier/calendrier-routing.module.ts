@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: CalendrierPage
+  },
+  {
+    path: 'classement',
+    loadChildren: () => import('../classement/classement.module').then(m => m.ClassementPageModule)
   }
 ];
 
