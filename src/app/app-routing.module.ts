@@ -13,15 +13,15 @@ const routes: Routes = [
   },
   {
     path: 'classement',
-    loadChildren: () => import('./classement/classement.module').then( m => m.ClassementPageModule)
+    loadChildren: () => import('./pages/classement/classement.module').then(m => m.ClassementPageModule)
   },
   {
     path: 'calendrier',
-    loadChildren: () => import('./calendrier/calendrier.module').then( m => m.CalendrierPageModule)
+    loadChildren: () => import('./pages/calendrier/calendrier.module').then(m => m.CalendrierPageModule)
   },
   {
     path: 'course',
-    loadChildren: () => import('./course/course.module').then( m => m.CoursePageModule)
+    loadChildren: () => import('./pages/course/course.module').then(m => m.CoursePageModule)
   },
 ];
 

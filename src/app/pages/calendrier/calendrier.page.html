@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Calendrier</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let race of raceList" (click)="onClickRace(race)">
+      {{race.raceName}} <br>
+      {{race.dateTime.toLocaleDateString()}}
+      {{race.dateTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}}
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<!--<ion-toolbar>-->
+<!--  <ion-tabs>-->
+<!--    <ion-tab-bar slot="bottom">-->
+<!--      <ion-tab-button tab="calendrier">-->
+<!--        <ion-icon name="calendar"></ion-icon>-->
+<!--        <ion-label>Calendrier</ion-label>-->
+<!--      </ion-tab-button>-->
+
+<!--      <ion-tab-button tab="classement">-->
+<!--        <ion-icon name="trophy"></ion-icon>-->
+<!--        <ion-label>Classement</ion-label>-->
+<!--      </ion-tab-button>-->
+<!--    </ion-tab-bar>-->
+<!--  </ion-tabs>-->
+<!--</ion-toolbar>-->
+
