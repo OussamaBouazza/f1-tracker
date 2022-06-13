@@ -18,6 +18,9 @@ export class CoursePage implements OnInit {
   async ngOnInit() {
     let jsonData: string;
 
+    //efface les données d'une ancienne course pour ne pas être affichée lors du chargement
+    this.race = undefined;
+
     //récupérer la course sélectionnée
     this.route.queryParams.subscribe(params => {
       jsonData = params['raceData'];
@@ -32,13 +35,14 @@ export class CoursePage implements OnInit {
     this.race.Results = await this.api.getRaceResults(this.race.season, this.race.round);
 
     //check si les données son disponible dans l'api
-    if (this.race.Results == null)
-      this.isResumed = false;
-    else {
+    if (this.race.Results != null){
       this.isResumed = true;
 
       //requête pour récupérer les résultats des qualifications d'une course
       this.race.QualifyingResults = await this.api.getQualifyingResults(this.race.season, this.race.round);
+    }
+    else {
+      this.isResumed = false;
     }
 
   }
