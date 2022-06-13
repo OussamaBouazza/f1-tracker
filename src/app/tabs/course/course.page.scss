@@ -1,13 +1,50 @@
-ion-slide ion-item{
+@import "src/global";
+
+h1{
+  margin: 0rem 0.6rem;
+  font-size: 1.2rem;
+}
+
+h2{
+  margin-top: 0.2rem;
+}
+
+.race-row{
   width: 100%;
+  text-align: start;
+  font-size: 0.7rem;
+}
+
+.rank-number{
+  text-align: center;
 }
 
 #qualification{
-  font-size: 0.7rem;
+  ion-label{
+    font-family: f1 !important;
+    font-size: 0.5rem;
+  }
 }
 
 .qualif-ranking{
   padding-left: 0;
   padding-right: 0.3rem;
   text-align: end;
+}
+
+.driver-name{
+  font-size: 1rem;
+}
+
+ion-slides{
+  --bullet-background-active: $focus;
+  --bullet-background: #919191;
+}
+
+.date-prevue{
+  height: 20rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

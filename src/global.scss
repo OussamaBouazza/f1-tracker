@@ -24,3 +24,31 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+$background-dark: #181829;
+$item: #1a1d37;
+$focus: #40ffca;
+
+@font-face {
+  font-family: 'f1';
+  src: url("assets/font/Formula1-Regular.otf");
+}
+
+@font-face {
+  font-family: 'f1';
+  src: url("assets/font/Formula1-Regular.otf");
+}
+
+@font-face {
+  font-family: 'f1-bold';
+  src: url("assets/font/Formula1-Bold.otf");
+}
+
+@font-face {
+  font-family: 'f1-wide';
+  src: url("assets/font/Formula1-Wide.otf");
+}
+
+*{
+  font-family: 'f1', Verdana;
+}
