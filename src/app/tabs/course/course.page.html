@@ -10,13 +10,12 @@
 <ion-content >
 <!--si la course est finie et que les données sont disponible, on affiche le classement-->
 <!--  sinon on affiche l'heure prévu du GP-->
-
-  <ion-list *ngIf="isResumed; else blockDate">
+  <div *ngIf="isResumed; else blockDate" >
     <!--  slides des classement pilote et constructeur-->
-    <ion-slides pager="true">
-    <!--  Résultat course-->
+    <ion-slides pager="true" [options]="{autoHeight: true}">
+      <!--  Résultat course-->
       <ion-slide>
-        <div class="race-row">
+        <div class="swipe-title">
           <ion-grid>
             <ion-row>
               <h2>Course</h2>
@@ -55,9 +54,25 @@
         </div>
       </ion-slide>
 
-      <!--      Résultat Qualifications-->
+      <!-- Grille de départ-->
       <ion-slide>
-        <ion-item lines="none" class="race-row">
+        <div id="grid-wrapper">
+          <h2 class="grid-title">Grille de départ</h2>
+
+          <!--mettre un margin top pour les pilotes de la 2ème colonne pour simuler une grille de départ-->
+          <div *ngFor="let driver of race.QualifyingResults" [ngStyle]="{'margin-top': (driver.position%2==0)? '4rem': '0rem'}">
+            <h3>{{driver.position}}</h3>
+            <img src="assets/grid-line.svg" class="grid-line">
+            <img src="{{'assets/driver-pics/'+ driver.Driver.code +'.png'}}" class="driver-image">
+            <h3 class="driver-name">{{driver.Driver.familyName}}</h3>
+
+          </div>
+        </div>
+      </ion-slide>
+
+      <!-- les chronos des qualifications -->
+      <ion-slide>
+        <div class="swipe-title">
           <ion-grid >
             <ion-row>
               <h2>Qualification</h2>
@@ -69,7 +84,7 @@
               </ion-col>
 
               <ion-col size="2" class="header">
-                <ion-label>Pilote</ion-label>
+                <ion-label style="font-size: 0.5rem">Pilote</ion-label>
               </ion-col>
 
               <ion-col size="3" class="header">
@@ -108,10 +123,10 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-        </ion-item>
+        </div>
       </ion-slide>
     </ion-slides>
-  </ion-list>
+  </div>
 
 
   <ng-template #blockDate>

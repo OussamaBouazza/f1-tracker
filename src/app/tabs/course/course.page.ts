@@ -16,10 +16,10 @@ export class CoursePage implements OnInit {
   constructor(public route:ActivatedRoute, public api: ApiService) { }
 
   async ngOnInit() {
-    let jsonData: string;
-
     //efface les données d'une ancienne course pour ne pas être affichée lors du chargement
     this.race = undefined;
+
+    let jsonData: string;
 
     //récupérer la course sélectionnée
     this.route.queryParams.subscribe(params => {
@@ -44,7 +44,6 @@ export class CoursePage implements OnInit {
     else {
       this.isResumed = false;
     }
-
   }
 
 }

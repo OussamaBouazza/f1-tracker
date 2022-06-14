@@ -6,10 +6,10 @@ h1{
 }
 
 h2{
-  margin-top: 0.2rem;
+  margin-left: 0.5rem;
 }
 
-.race-row{
+.swipe-title{
   width: 100%;
   text-align: start;
   font-size: 0.7rem;
@@ -37,8 +37,13 @@ h2{
 }
 
 ion-slides{
-  --bullet-background-active: $focus;
+  --bullet-background-active: #40FFCAFF;
   --bullet-background: #919191;
+}
+
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal>.swiper-pagination-bullets{
+  position: fixed !important;
+  margin-bottom: 50%;
 }
 
 .date-prevue{
@@ -47,4 +52,25 @@ ion-slides{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#grid-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .grid-title{
+    grid-column: 1 / span 2;
+    justify-self: start;
+  }
+
+  .grid-line{
+    max-width: 80%;
+  }
+
+  .driver-image{
+    max-width: 80%;
+    margin-top: -1rem;
+  }
+
+
 }
