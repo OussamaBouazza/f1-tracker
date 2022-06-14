@@ -5,12 +5,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-<!--  <ion-header collapse="condense">-->
-<!--    <ion-toolbar>-->
-<!--      <ion-title size="large">Classement</ion-title>-->
-<!--    </ion-toolbar>-->
-<!--  </ion-header>-->
-
 <!--  boutons des categories-->
   <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged()">
     <ion-segment-button value="0">
@@ -22,84 +16,80 @@
   </ion-segment>
 
 <!--  slides des classement pilote et constructeur-->
-  <ion-slides #slides [options]="sliderOptions" (ionSlideWillChange)="slideChanged(slides)" (ionSlidesDidLoad)="slideChanged(slides)">
+  <ion-slides #slides [options]="sliderOptions" pager="true" [options]="{autoHeight: true}" (ionSlideWillChange)="slideChanged(slides)" (ionSlidesDidLoad)="slideChanged(slides)" >
+    <!--classement pilote-->
     <ion-slide>
-<!--      classement pilote-->
       <ion-list>
-        <ion-item lines="none">
-          <ion-grid >
-            <!--        entete du tableau-->
-            <ion-row>
-              <ion-col size="3" class="header">
-                <ion-label>Rang</ion-label>
-              </ion-col>
+        <ion-grid >
+          <!--        entete du tableau-->
+          <ion-row>
+            <ion-col size="3" class="header rank">
+              <ion-label>Pos</ion-label>
+            </ion-col>
 
-              <ion-col size="6" class="header">
-                <ion-label>Pilote</ion-label>
-              </ion-col>
+            <ion-col size="6" class="header">
+              <ion-label>Pilote</ion-label>
+            </ion-col>
 
-              <ion-col size="3" class="header">
-                <ion-label>Pts</ion-label>
-              </ion-col>
-            </ion-row>
+            <ion-col size="3" class="header">
+              <ion-label>Pts</ion-label>
+            </ion-col>
+          </ion-row>
 
-            <!--        Pilote avec son rang et son totalt de points-->
-            <ion-row *ngFor="let driver of driverStanding">
-              <ion-col size="3">
-                <ion-label>{{driver.position}}</ion-label>
-              </ion-col>
+          <!--        Pilote avec son rang et son totalt de points-->
+          <ion-row *ngFor="let driver of driverStanding">
+            <ion-col size="3" class="rank">
+              <ion-label>{{driver.position}}</ion-label>
+            </ion-col>
 
-              <ion-col size="6">
-                <ion-label>{{driver.Driver.familyName}}</ion-label>
-              </ion-col>
+            <ion-col size="6">
+              <ion-label>{{driver.Driver.familyName}}</ion-label>
+            </ion-col>
 
-              <ion-col size="3">
-                <ion-label>{{driver.points}}</ion-label>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
+            <ion-col size="3">
+              <ion-label>{{driver.points}}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-list>
     </ion-slide>
 
+    <!--classement constructeur-->
     <ion-slide>
       <ion-list>
-        <ion-item lines="none">
-          <ion-grid >
-            <!--        entete du tableau-->
-            <ion-row>
-              <ion-col size="3" class="header">
-                <ion-label>Rang</ion-label>
-              </ion-col>
+        <ion-grid >
+          <!--        entete du tableau-->
+          <ion-row>
+            <ion-col size="3" class="header rank">
+              <ion-label>Pos</ion-label>
+            </ion-col>
 
-              <ion-col size="6" class="header">
-                <ion-label>Équipe</ion-label>
-              </ion-col>
+            <ion-col size="6" class="header">
+              <ion-label>Équipe</ion-label>
+            </ion-col>
 
-              <ion-col size="3" class="header">
-                <ion-label>Pts</ion-label>
-              </ion-col>
-            </ion-row>
+            <ion-col size="3" class="header">
+              <ion-label>Pts</ion-label>
+            </ion-col>
+          </ion-row>
 
-            <!--        Pilote avec son rang et son totalt de points-->
-            <ion-row *ngFor="let team of constructorStanding">
-              <ion-col size="3">
-                <ion-label>{{team.position}}</ion-label>
-              </ion-col>
+          <!--        Pilote avec son rang et son totalt de points-->
+          <ion-row *ngFor="let team of constructorStanding">
+            <ion-col size="3" class="rank">
+              <ion-label>{{team.position}}</ion-label>
+            </ion-col>
 
-              <ion-col size="6">
-                <ion-label>{{team.Constructor.name}}</ion-label>
-              </ion-col>
+            <ion-col size="6">
+              <ion-label>{{team.Constructor.name}}</ion-label>
+            </ion-col>
 
-              <ion-col size="3">
-                <ion-label>{{team.points}}</ion-label>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
+            <ion-col size="3">
+              <ion-label>{{team.points}}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-list>
     </ion-slide>
   </ion-slides>
 </ion-content>
 
-<!--<app-navbar></app-navbar>-->

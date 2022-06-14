@@ -4,6 +4,24 @@
   border-bottom: #9d9fa6 solid 0.05rem;
 }
 
+ion-segment-button{
+  --color-checked: #40FFCAFF;
+}
+
 ion-list{
   width: 100%;
+  font-size: 1rem;
+  text-align: start;
+
+  .rank{
+    text-align: center;
+  }
 }
+
+ion-slides{
+  --bullet-background-active: #40FFCAFF;
+  --bullet-background: #919191;
+}
+
+
+
