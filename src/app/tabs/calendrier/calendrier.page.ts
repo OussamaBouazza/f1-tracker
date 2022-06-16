@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../../api/services/api.service";
 import {Race} from "../../api/data/Race";
 import {Router} from "@angular/router";
+import {ConnectionStatus, Network} from "@capacitor/network";
 
 @Component({
   selector: 'app-calendrier',
@@ -10,10 +11,16 @@ import {Router} from "@angular/router";
 })
 export class CalendrierPage implements OnInit {
   private raceList: Race[];
+  private connectionStatus: ConnectionStatus;
 
   constructor(private api: ApiService, public router: Router) { }
 
   async ngOnInit() {
+      console.log('Network status changed', Network.getStatus());
+    Network.addListener('networkStatusChange', status => {
+      console.log('Network status changed', status);
+    });
+
     this.raceList = await this.api.getCalendar(2022);
   }
 
